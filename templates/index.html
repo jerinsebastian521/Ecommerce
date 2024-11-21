@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>Welcome to E-Shop</h1>
+    <p>Your one-stop shop for everything!</p>
+    {% if session.get('user_id') %}
+    <!-- If user is logged in, show link to register -->
+    <a href="/register" class="btn">Get Started</a>
+    {% else %}
+    <!-- If no user_id in session, show link to dashboard -->
+    <a href="/dashboard" class="btn">Get Started</a>
+    {% endif %}
+</div>
+{% endblock %}
