@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="customer-home">
+    <div class="welcome-section">
+        <h1>Welcome Back, {{ session['username'] }}!</h1>
+        <p>Explore our latest collections and find your perfect match.</p>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+            <div class="product">
+                <img src="{{ product['image_url'] }}" alt="{{ product['name'] }}">
+                <div class="product-info">
+                    <h3>{{ product['name'] }}</h3>
+                    <p>{{ product['description'] }}</p>
+                    <form action="/cart/add" method="POST">
+                        <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                        <input type="hidden" name="product_name" value="{{ product['name'] }}">
+                        <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <p>No products available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
